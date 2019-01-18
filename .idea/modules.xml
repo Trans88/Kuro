@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyECProject.iml" filepath="$PROJECT_DIR$/MyECProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec/ec.iml" filepath="$PROJECT_DIR$/ec/ec.iml" />
       <module fileurl="file://$PROJECT_DIR$/latte_annotations/latte_annotations.iml" filepath="$PROJECT_DIR$/latte_annotations/latte_annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/latte_compiler/latte_compiler.iml" filepath="$PROJECT_DIR$/latte_compiler/latte_compiler.iml" />
       <module fileurl="file://$PROJECT_DIR$/latte_core/latte_core.iml" filepath="$PROJECT_DIR$/latte_core/latte_core.iml" />
