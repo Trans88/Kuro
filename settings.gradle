@@ -1,1 +1,1 @@
-include ':latte_annotations', ':latte_compiler', ':latte_core', ':latte_ec', ':ec'
+include ':kuro_annotations', ':kuro_compiler', ':kuro_core', ':kuro_ec', ':ec'

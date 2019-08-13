@@ -1,11 +1,16 @@
 package com.trans.ec;
-import com.trans.latte_core.activities.ProxyActivity;
-import com.trans.latte_core.delegates.LatteDelegate;
+import com.trans.kuro_core.activities.ProxyActivity;
+import com.trans.kuro_core.delegates.KuroDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
     @Override
-    public LatteDelegate setRootDelegate() {
-        return null;
+    public KuroDelegate setRootDelegate() {
+        return new ExampleDelegate();
+    }
+
+    @Override
+    public void post(Runnable runnable) {
+
     }
 }

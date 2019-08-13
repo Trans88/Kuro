@@ -1,12 +1,14 @@
 package com.trans.ec;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.trans.latte_core.delegates.LatteDelegate;
+import com.trans.kuro_core.delegates.KuroDelegate;
 
-public class ExampleDelegate extends LatteDelegate {
+import androidx.annotation.Nullable;
+
+public class ExampleDelegate extends KuroDelegate {
+
     @Override
     public Object setLayout() {
         return R.layout.delegete_example;
@@ -16,4 +18,6 @@ public class ExampleDelegate extends LatteDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }
+
+
 }
