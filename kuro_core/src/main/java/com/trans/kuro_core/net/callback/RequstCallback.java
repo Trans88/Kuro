@@ -1,5 +1,11 @@
 package com.trans.kuro_core.net.callback;
 
+import android.os.Handler;
+
+import com.trans.kuro_core.ui.KuroLoader;
+import com.trans.kuro_core.ui.LoaderCreator;
+import com.trans.kuro_core.ui.LoaderStyle;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -9,12 +15,16 @@ public class RequstCallback implements Callback<String> {
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
+    private final LoaderStyle LOADER_STYLE;
 
-    public RequstCallback(IRequst requst, ISuccess success, IFailure failure, IError error) {
+    private static final Handler HANDLER=new Handler();
+
+    public RequstCallback(IRequst requst, ISuccess success, IFailure failure, IError error,LoaderStyle loaderStyle) {
         this.REQUEST = requst;
         this.SUCCESS = success;
         this.FAILURE = failure;
         this.ERROR = error;
+        this.LOADER_STYLE=loaderStyle;
     }
 
     @Override
@@ -30,6 +40,7 @@ public class RequstCallback implements Callback<String> {
                 ERROR.onError(response.code(),response.message());
             }
         }
+        stopLoading();
     }
 
     @Override
@@ -40,6 +51,18 @@ public class RequstCallback implements Callback<String> {
 
         if (REQUEST!=null){
             REQUEST.onRequstEnd();
+        }
+        stopLoading();
+    }
+
+    private void stopLoading(){
+        if (LOADER_STYLE!=null){
+            HANDLER.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    KuroLoader.stopLoading();
+                }
+            },1000);
         }
     }
 }

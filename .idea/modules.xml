@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FestDec.iml" filepath="$PROJECT_DIR$/FestDec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kuro.iml" filepath="$PROJECT_DIR$/Kuro.iml" />
       <module fileurl="file://$PROJECT_DIR$/ec/ec.iml" filepath="$PROJECT_DIR$/ec/ec.iml" />
       <module fileurl="file://$PROJECT_DIR$/kuro_annotations/kuro_annotations.iml" filepath="$PROJECT_DIR$/kuro_annotations/kuro_annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/kuro_compiler/kuro_compiler.iml" filepath="$PROJECT_DIR$/kuro_compiler/kuro_compiler.iml" />

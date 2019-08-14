@@ -7,11 +7,13 @@ import com.trans.kuro_core.net.callback.IFailure;
 import com.trans.kuro_core.net.callback.IRequst;
 import com.trans.kuro_core.net.callback.ISuccess;
 import com.trans.kuro_core.net.callback.RequstCallback;
+import com.trans.kuro_core.ui.KuroLoader;
 import com.trans.kuro_core.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import androidx.core.app.NavUtils;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,7 +61,9 @@ public class RestClient {
         if (REQUEST != null) {
             REQUEST.onRequstStart();
         }
-
+        if (LOADER_STYLE!=null){
+            KuroLoader.showLoading(CONTEXT,LOADER_STYLE);
+        }
         switch (method) {
             case GET:
                 call = service.get(URL, PARAMS);
@@ -87,7 +91,8 @@ public class RestClient {
                 REQUEST,
                 SUCCESS,
                 FAILURE,
-                ERROR);
+                ERROR,
+                LOADER_STYLE);
     }
     /**
      * 具体使用方法

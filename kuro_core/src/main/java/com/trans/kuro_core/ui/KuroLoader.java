@@ -20,12 +20,21 @@ public class KuroLoader {
 
     private static final ArrayList<AppCompatDialog> LOADERS=new ArrayList<>();
 
-    private static final String DEFAULT_LOADER=LoaderStyle.BallClipRotateIndicator.name();
+    private static final String DEFAULT_LOADER=LoaderStyle.BallClipRotateIndicator.name();//loader默认样式
 
+    public static void showLoading(Context context){
+        showLoading(context,DEFAULT_LOADER);
+    }
+
+    public static void showLoading(Context context,Enum<LoaderStyle> type){
+        showLoading(context,type.name());
+    }
     public static void showLoading(Context context,String type){
+
         final AppCompatDialog dialog=new AppCompatDialog(context,R.style.dialog);
 
         final AVLoadingIndicatorView avLoadingIndicatorView=LoaderCreator.create(type,context);
+
         dialog.setContentView(avLoadingIndicatorView);
 
         int deviceWeight=DimenUtil.getScreenWidth();
@@ -43,9 +52,7 @@ public class KuroLoader {
         dialog.show();
     }
 
-    public static void showLoading(Context context){
-        showLoading(context,DEFAULT_LOADER);
-    }
+
 
     public static void stopLoading(){
         for (AppCompatDialog dialog:LOADERS){

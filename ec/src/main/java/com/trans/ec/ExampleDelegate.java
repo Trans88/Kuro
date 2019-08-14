@@ -26,10 +26,11 @@ public class ExampleDelegate extends KuroDelegate {
     private void testRestClient(){
         RestClient.builder()
                 .url("http://demotravel.xiangbaoche.cn/api.php/api/Cusallvisit/Get_cus_info?phone=15825709303")
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {

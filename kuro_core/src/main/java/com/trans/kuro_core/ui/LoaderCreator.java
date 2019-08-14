@@ -12,9 +12,11 @@ import java.util.WeakHashMap;
 *function : 以一种缓存的方式存放Loader,不需要在每次使用的时候都进行反射，优化性能。
 */
 public final class LoaderCreator  {
+
     private static final WeakHashMap<String,Indicator> LOADING_MAP =new WeakHashMap<>();
 
     static AVLoadingIndicatorView create(String type, Context context){
+
         final AVLoadingIndicatorView avLoadingIndicatorView=new AVLoadingIndicatorView(context);
         if (LOADING_MAP.get(type)==null){
             final Indicator indicator=getIndicator(type);
