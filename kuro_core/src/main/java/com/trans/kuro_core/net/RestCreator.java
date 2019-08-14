@@ -15,7 +15,7 @@ public class RestCreator {
     }
     private static final class RetrofitHolder{
         private static final String BASE_URL= (String) Kuro.getConfigurations().get(ConfigType.API_HOST.name());
-        private static final Retrofit RETRQFIT_CLIENT=new Retrofit.Builder()
+        private static final Retrofit RETR0FIT_CLIENT =new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -30,7 +30,7 @@ public class RestCreator {
 
     private static final class RestServiceHolder{
         private static final RestService REST_SERVICE=
-                RetrofitHolder.RETRQFIT_CLIENT.create(RestService.class);
+                RetrofitHolder.RETR0FIT_CLIENT.create(RestService.class);
     }
 
 }
