@@ -1,4 +1,4 @@
-package com.trans.kuro_core.util;
+package com.trans.kuro_core.util.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;

@@ -19,9 +19,11 @@ public class RestCreator {
     public static WeakHashMap<String, Object> getParams(){
         return ParamsHolder.PARAMS;
     }
+
     public static RestService getRestService(){
         return RestServiceHolder.REST_SERVICE;
     }
+
     private static final class RetrofitHolder{
         private static final String BASE_URL= (String) Kuro.getConfigurations().get(ConfigType.API_HOST.name());
         private static final Retrofit RETR0FIT_CLIENT =new Retrofit.Builder()
@@ -30,6 +32,7 @@ public class RestCreator {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }
+
     private static final class OKHttpHolder{
         private static final int TIME_OUT=60;
         private static final OkHttpClient OK_HTTP_CLIENT=new OkHttpClient.Builder()
