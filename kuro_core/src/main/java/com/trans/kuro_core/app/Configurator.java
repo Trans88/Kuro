@@ -6,16 +6,20 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * 进行一些配置文件的存储和获取
  */
 public class Configurator {
-    private static final HashMap<String,Object> KURO_CONFIGS =new HashMap<>();
+    private static final HashMap<Object,Object> KURO_CONFIGS =new HashMap<>();
     //存储图标的空间
     private static final ArrayList<IconFontDescriptor>ICONS=new ArrayList<>();
+    //拦截器
+    private static final ArrayList<Interceptor>INTERCEPTORS=new ArrayList<>();
 
     private Configurator(){
-        KURO_CONFIGS.put(ConfigType.CONFIG_READY.name(),false);
+        KURO_CONFIGS.put(ConfigKeys.CONFIG_READY.name(),false);
     }
 
 
@@ -29,19 +33,29 @@ public class Configurator {
         private static final Configurator INSTANCE =new Configurator();
     }
 
-    final HashMap<String,Object> getKuroConfigs(){
+    final HashMap<Object,Object> getKuroConfigs(){
         return KURO_CONFIGS;
     }
     public final void configure(){
         initIcons();
-        KURO_CONFIGS.put(ConfigType.CONFIG_READY.name(),true);
+        KURO_CONFIGS.put(ConfigKeys.CONFIG_READY.name(),true);
     }
     public final Configurator withApiHost(String host){
-        KURO_CONFIGS.put(ConfigType.API_HOST.name(),host);
+        KURO_CONFIGS.put(ConfigKeys.API_HOST.name(),host);
         return this;
     }
     public final Configurator withIcon(IconFontDescriptor descriptor){
         ICONS.add(descriptor);
+        return this;
+    }
+    public final Configurator withInterceptor(Interceptor interceptor){
+        INTERCEPTORS.add(interceptor);
+        KURO_CONFIGS.put(ConfigKeys.INTERCEPTOR,INTERCEPTORS);
+        return this;
+    }
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors){
+        INTERCEPTORS.addAll(interceptors);
+        KURO_CONFIGS.put(ConfigKeys.INTERCEPTOR,INTERCEPTORS);
         return this;
     }
     private void initIcons(){
@@ -53,7 +67,7 @@ public class Configurator {
         }
     }
     private void checkConfiguration(){
-        final boolean isReady= (boolean) KURO_CONFIGS.get(ConfigType.CONFIG_READY.name());
+        final boolean isReady= (boolean) KURO_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
         if(!isReady){
             throw new RuntimeException("configuration is not ready,call configure");
         }
@@ -61,7 +75,7 @@ public class Configurator {
 
     @SuppressWarnings("unchecked")
     //告诉编译器这个类型是没有检测过得，但是并不抛出警告
-    final <T> T getConfiguration(Enum<ConfigType> key){
+    final <T> T getConfiguration(Enum<ConfigKeys> key){
         checkConfiguration();
         return (T) KURO_CONFIGS.get(key.name());
     }

@@ -1,11 +1,14 @@
 package com.trans.kuro_core.net;
 
-import com.trans.kuro_core.app.ConfigType;
+import com.trans.kuro_core.app.ConfigKeys;
+import com.trans.kuro_core.app.Configurator;
 import com.trans.kuro_core.app.Kuro;
 
+import java.util.ArrayList;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -25,7 +28,7 @@ public class RestCreator {
     }
 
     private static final class RetrofitHolder{
-        private static final String BASE_URL= (String) Kuro.getConfigurations().get(ConfigType.API_HOST.name());
+        private static final String BASE_URL= (String) Kuro.getConfigurations().get(ConfigKeys.API_HOST.name());
         private static final Retrofit RETR0FIT_CLIENT =new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
@@ -35,7 +38,18 @@ public class RestCreator {
 
     private static final class OKHttpHolder{
         private static final int TIME_OUT=60;
-        private static final OkHttpClient OK_HTTP_CLIENT=new OkHttpClient.Builder()
+        private static final OkHttpClient.Builder BUILDER=new OkHttpClient.Builder();
+        private static final ArrayList<Interceptor> INTERCEPTORS= (ArrayList<Interceptor>) Kuro.getConfigurations().get(ConfigKeys.INTERCEPTOR);
+
+        private static OkHttpClient.Builder addInterceptor(){
+            if (INTERCEPTORS!=null&&!INTERCEPTORS.isEmpty()){
+                for (Interceptor interceptors: INTERCEPTORS) {
+                    BUILDER.addInterceptor(interceptors);
+                }
+            }
+            return BUILDER;
+        }
+        private static final OkHttpClient OK_HTTP_CLIENT=addInterceptor()
                 .connectTimeout(TIME_OUT,TimeUnit.SECONDS)
                 .build();
     }
