@@ -10,5 +10,6 @@ public enum ConfigKeys {
     APPLICATION_CONTEXT,    //全局的上下文
     CONFIG_READY,   //控制初始化或者配置是否完成
     ICON,      //存储自己的初始化项目
+    LOADER_DELAYED,
     INTERCEPTOR //OkHttp拦截器
 }

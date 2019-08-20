@@ -2,6 +2,8 @@ package com.trans.kuro_core.net.callback;
 
 import android.os.Handler;
 
+import com.trans.kuro_core.app.ConfigKeys;
+import com.trans.kuro_core.app.Kuro;
 import com.trans.kuro_core.ui.KuroLoader;
 import com.trans.kuro_core.ui.LoaderCreator;
 import com.trans.kuro_core.ui.LoaderStyle;
@@ -56,13 +58,14 @@ public class RequstCallback implements Callback<String> {
     }
 
     private void stopLoading(){
+        final long delayed= (long) Kuro.getConfigurations().get(ConfigKeys.LOADER_DELAYED);
         if (LOADER_STYLE!=null){
             HANDLER.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     KuroLoader.stopLoading();
                 }
-            },1000);
+            },delayed);
         }
     }
 }

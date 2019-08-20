@@ -18,6 +18,7 @@ public final class LoaderCreator  {
     static AVLoadingIndicatorView create(String type, Context context){
 
         final AVLoadingIndicatorView avLoadingIndicatorView=new AVLoadingIndicatorView(context);
+
         if (LOADING_MAP.get(type)==null){
             final Indicator indicator=getIndicator(type);
             LOADING_MAP.put(type,indicator);
@@ -25,6 +26,7 @@ public final class LoaderCreator  {
         avLoadingIndicatorView.setIndicator(LOADING_MAP.get(type));
         return avLoadingIndicatorView;
     }
+
     private static Indicator getIndicator(String name){
         if (name==null||name.isEmpty()){
             return null;
