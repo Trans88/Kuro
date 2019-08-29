@@ -1,6 +1,7 @@
 package com.trans.ec;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,12 +26,13 @@ public class ExampleDelegate extends KuroDelegate {
     }
     private void testRestClient(){
         RestClient.builder()
-                .url("http://demotravel.xiangbaoche.cn/api.php/api/Cusallvisit/Get_cus_info?phone=15825709303")
+                .url("http://127.0.0.1/index")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-//                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+                        Log.d("HAHAHAHA", response);
+                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {

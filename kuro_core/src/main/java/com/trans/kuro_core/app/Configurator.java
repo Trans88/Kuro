@@ -44,6 +44,11 @@ public class Configurator {
         KURO_CONFIGS.put(ConfigKeys.API_HOST.name(),host);
         return this;
     }
+
+    public final Configurator withLoaderDelayed(long delayed){
+        KURO_CONFIGS.put(ConfigKeys.LOADER_DELAYED,delayed);
+        return this;
+    }
     public final Configurator withIcon(IconFontDescriptor descriptor){
         ICONS.add(descriptor);
         return this;

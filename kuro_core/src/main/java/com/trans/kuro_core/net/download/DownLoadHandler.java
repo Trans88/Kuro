@@ -46,8 +46,11 @@ public class DownLoadHandler {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
+
                             final ResponseBody responseBody=response.body();
+
                             final SaveFileTask tesk=new SaveFileTask(REQUEST,SUCCESS);
+
                             tesk.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,DOWNLOAD_DIR,EXTENSION,response,NAME);
 
                             //判断文件是否下载完全

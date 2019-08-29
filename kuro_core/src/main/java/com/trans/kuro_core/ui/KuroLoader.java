@@ -38,6 +38,7 @@ public class KuroLoader {
         dialog.setContentView(avLoadingIndicatorView);
 
         int deviceWeight=DimenUtil.getScreenWidth();
+
         int deviceHeight=DimenUtil.getScreenHeight();
 
         final Window dialogWindow= dialog.getWindow();

@@ -24,7 +24,7 @@ import retrofit2.Callback;
 /**
  * @author TRS透明
  * Created on 2019/8/13
- * function : 网络框架
+ * function : 网络请求
  */
 public class RestClient {
     private final String URL;
@@ -76,6 +76,7 @@ public class RestClient {
         if (REQUEST != null) {
             REQUEST.onRequstStart();
         }
+
         if (LOADER_STYLE != null) {
             KuroLoader.showLoading(CONTEXT, LOADER_STYLE);
         }
@@ -155,6 +156,7 @@ public class RestClient {
     public final void delete() {
         request(HttpMethod.DELETE);
     }
+
     public final void upload(){
         request(HttpMethod.UPLOAD);
     }
