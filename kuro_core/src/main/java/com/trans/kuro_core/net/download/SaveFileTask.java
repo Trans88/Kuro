@@ -12,7 +12,6 @@ import com.trans.kuro_core.util.file.FileUtil;
 import java.io.File;
 import java.io.InputStream;
 
-import androidx.core.app.NavUtils;
 import okhttp3.ResponseBody;
 
 /**
@@ -73,7 +72,7 @@ public class SaveFileTask extends AsyncTask<Object,Void,File> {
             install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             install.setAction(Intent.ACTION_VIEW);
             install.setDataAndType(Uri.fromFile(file),"application/vnd.android.package-archive");
-            Kuro.getApplication().startActivity(install);
+            Kuro.getApplicationContext().startActivity(install);
         }
     }
 }

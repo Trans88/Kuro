@@ -12,7 +12,7 @@ public final class Kuro {
         return Configurator.getInstance().getKuroConfigs();
     }
 
-    public static Context getApplication(){
+    public static Context getApplicationContext(){
         return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT.name());
     }
 }
