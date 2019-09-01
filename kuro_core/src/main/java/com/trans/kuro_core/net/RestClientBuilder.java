@@ -6,7 +6,7 @@ import com.trans.kuro_core.net.callback.IError;
 import com.trans.kuro_core.net.callback.IFailure;
 import com.trans.kuro_core.net.callback.IRequst;
 import com.trans.kuro_core.net.callback.ISuccess;
-import com.trans.kuro_core.ui.LoaderStyle;
+import com.trans.kuro_core.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

@@ -1,6 +1,7 @@
 package com.trans.ec;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -11,7 +12,6 @@ import com.trans.kuro_core.net.callback.IError;
 import com.trans.kuro_core.net.callback.IFailure;
 import com.trans.kuro_core.net.callback.ISuccess;
 
-import androidx.annotation.Nullable;
 
 public class ExampleDelegate extends KuroDelegate {
 

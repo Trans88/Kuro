@@ -1,4 +1,4 @@
-package com.trans.kuro_core.ui;
+package com.trans.kuro_core.ui.loader;
 
 import com.wang.avi.indicators.BallClipRotateIndicator;
 import com.wang.avi.indicators.BallClipRotateMultipleIndicator;

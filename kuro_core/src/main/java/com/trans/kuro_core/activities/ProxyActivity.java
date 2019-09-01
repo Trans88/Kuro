@@ -1,12 +1,12 @@
 package com.trans.kuro_core.activities;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
 import com.trans.kuro_core.R;
 import com.trans.kuro_core.delegates.KuroDelegate;
 
-import androidx.appcompat.app.AppCompatActivity;
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
 import me.yokeyword.fragmentation.SupportActivityDelegate;

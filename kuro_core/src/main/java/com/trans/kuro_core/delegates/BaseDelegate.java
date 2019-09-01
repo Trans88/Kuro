@@ -3,22 +3,24 @@ package com.trans.kuro_core.delegates;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.trans.kuro_core.activities.ProxyActivity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragmentDelegate;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
+import retrofit2.http.DELETE;
+
 /**
 *@author TRS透明
 *Created on 2019/3/13
@@ -34,7 +36,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
 
     public abstract Object setLayout();
 
-    public abstract void onBindView(@Nullable Bundle savedInstanceState,View rootView);
+    public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
 
     @Nullable
     @Override
@@ -49,6 +51,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         }
 
         mUnbinder=ButterKnife.bind(this,rootView);
+
         onBindView(savedInstanceState,rootView);
 
         return rootView;
@@ -72,6 +75,13 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         DELEGATE.onAttach((Activity) context);
         _mActivity = DELEGATE.getActivity();
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DELEGATE.onCreate(savedInstanceState);
+    }
+
     @Override
     public SupportFragmentDelegate getSupportDelegate() {
         return DELEGATE;
@@ -133,6 +143,11 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     }
 
     @Override
+    public boolean onBackPressedSupport() {
+         return DELEGATE.onBackPressedSupport();
+    }
+
+    @Override
     public void setFragmentResult(int resultCode, Bundle bundle) {
         DELEGATE.setFragmentResult(resultCode, bundle);
     }
@@ -152,8 +167,11 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         DELEGATE.putNewBundle(newBundle);
     }
 
-    @Override
-    public boolean onBackPressedSupport() {
-         return DELEGATE.onBackPressedSupport();
+    public void start(ISupportFragment toFragment) {
+        DELEGATE.start(toFragment);
+    }
+
+    public void start(final ISupportFragment toFragment, @LaunchMode int launchMode) {
+        DELEGATE.start(toFragment, launchMode);
     }
 }

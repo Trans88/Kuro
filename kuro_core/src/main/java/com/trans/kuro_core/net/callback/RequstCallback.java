@@ -4,9 +4,8 @@ import android.os.Handler;
 
 import com.trans.kuro_core.app.ConfigKeys;
 import com.trans.kuro_core.app.Kuro;
-import com.trans.kuro_core.ui.KuroLoader;
-import com.trans.kuro_core.ui.LoaderCreator;
-import com.trans.kuro_core.ui.LoaderStyle;
+import com.trans.kuro_core.ui.loader.KuroLoader;
+import com.trans.kuro_core.ui.loader.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

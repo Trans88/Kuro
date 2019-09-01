@@ -8,8 +8,8 @@ import com.trans.kuro_core.net.callback.IRequst;
 import com.trans.kuro_core.net.callback.ISuccess;
 import com.trans.kuro_core.net.callback.RequstCallback;
 import com.trans.kuro_core.net.download.DownLoadHandler;
-import com.trans.kuro_core.ui.KuroLoader;
-import com.trans.kuro_core.ui.LoaderStyle;
+import com.trans.kuro_core.ui.loader.KuroLoader;
+import com.trans.kuro_core.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

@@ -2,13 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 28
-
-
-
+    compileSdkVersion 27
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -26,12 +23,18 @@ android {
 }
 
 dependencies {
+
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api 'com.android.support:appcompat-v7:28.0.0'
+    api 'com.android.support:support-v4:27.1.1'
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support:design:27.1.1'
+    api 'com.android.support:cardview-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    api 'com.android.support.constraint:constraint-layout:1.1.3'
+    api('com.android.support.constraint:constraint-layout:1.1.3') {
+        exclude group: 'com.android.support'
+    }
     api project(':kuro_annotations')
     //字体图标依赖
     api('com.joanzapata.iconify:android-iconify-ionicons:2.2.2') {
@@ -40,22 +43,24 @@ dependencies {
     api('com.joanzapata.iconify:android-iconify-fontawesome:2.2.2') {
         exclude group: 'com.android.support'
     }
-    //Fragmentation依赖
-    api 'me.yokeyword:fragmentation:1.3.6'
+//    Fragmentation依赖
+    api 'me.yokeyword:fragmentation:1.3.3'
     api 'me.yokeyword:fragmentation-swipeback:1.3.6'
     //ButterKnife依赖
-    api 'com.jakewharton:butterknife:9.0.0-rc2'
+    api('com.jakewharton:butterknife:9.0.0-rc2') {
+        exclude group: 'com.android.support'
+    }
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
     //网络请求依赖
-    api 'com.squareup.okhttp3:okhttp:4.1.0'
     api 'com.squareup.okio:okio:2.3.0'
+    api 'com.squareup.okhttp3:okhttp:4.1.0'
     api 'com.squareup.retrofit2:retrofit:2.4.0'
-    api 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.4.0'
     //Load依赖
     api 'com.wang.avi:library:2.1.3'
     //Banner依赖
-    api 'com.bigkoo:convenientbanner:2.1.5'
-    api 'androidx.recyclerview:recyclerview:1.0.0+'
+    api 'com.bigkoo:convenientbanner:2.0.5'
+    //api 'androidx.recyclerview:recyclerview:1.0.0+'
     //JSON依赖
     api 'com.alibaba:fastjson:1.2.59'
 }

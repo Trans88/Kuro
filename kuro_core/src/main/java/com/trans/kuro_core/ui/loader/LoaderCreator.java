@@ -1,4 +1,4 @@
-package com.trans.kuro_core.ui;
+package com.trans.kuro_core.ui.loader;
 
 import android.content.Context;
 

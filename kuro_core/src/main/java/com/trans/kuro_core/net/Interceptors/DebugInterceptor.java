@@ -1,12 +1,12 @@
 package com.trans.kuro_core.net.Interceptors;
 
+import android.support.annotation.RawRes;
+
 import com.trans.kuro_core.util.file.FileUtil;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-import androidx.annotation.RawRes;
 import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Response;
