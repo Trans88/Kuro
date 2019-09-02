@@ -32,4 +32,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':kuro_ec')
     api project(':kuro_compiler')
+
+    api 'com.facebook.stetho:stetho:1.5.1'
+    api 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 }

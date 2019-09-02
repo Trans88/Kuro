@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ExampleActivity"
-            android:windowSoftInputMode="adjustPan|stateVisible"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

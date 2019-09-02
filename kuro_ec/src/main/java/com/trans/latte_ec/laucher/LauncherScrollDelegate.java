@@ -1,13 +1,18 @@
 package com.trans.latte_ec.laucher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.trans.kuro_core.app.AccountManager;
+import com.trans.kuro_core.app.IUserChecker;
 import com.trans.kuro_core.delegates.KuroDelegate;
+import com.trans.kuro_core.ui.launcher.ILauncherListener;
 import com.trans.kuro_core.ui.launcher.LauncherHolderCreator;
+import com.trans.kuro_core.ui.launcher.OnLauncherFinishTag;
 import com.trans.kuro_core.ui.launcher.ScrollLauncherTag;
 import com.trans.kuro_core.util.storage.KuroPreference;
 import com.trans.latte_ec.R;
@@ -20,6 +25,8 @@ public class LauncherScrollDelegate extends KuroDelegate implements OnItemClickL
     private ConvenientBanner<Integer> mConvenientBanner=null;
 
     private  final ArrayList<Integer> INTEGERS =new ArrayList<>();
+    private ILauncherListener mILauncherListener = null;
+
 
     private void initBanner(){
         INTEGERS.add(R.mipmap.launcher_scroll_001);
@@ -43,6 +50,14 @@ public class LauncherScrollDelegate extends KuroDelegate implements OnItemClickL
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener) {
+            mILauncherListener = (ILauncherListener) activity;
+        }
+    }
+
+    @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         initBanner();
     }
@@ -52,6 +67,21 @@ public class LauncherScrollDelegate extends KuroDelegate implements OnItemClickL
         if (position ==INTEGERS.size()-1){
             KuroPreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_TAG.name(),true);
             //检测用户是否已经登录
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 }

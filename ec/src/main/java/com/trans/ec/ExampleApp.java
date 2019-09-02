@@ -2,9 +2,11 @@ package com.trans.ec;
 
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.trans.kuro_core.app.Kuro;
 import com.trans.kuro_core.net.Interceptors.DebugInterceptor;
+import com.trans.latte_ec.database.DatabaseManager;
 import com.trans.latte_ec.icon.FontEcModule;
 
 public class ExampleApp extends Application {
@@ -18,6 +20,19 @@ public class ExampleApp extends Application {
                 .withApiHost("http://127.0.0.1/")
                 .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
+        //初始化数据库
+        DatabaseManager.getInstance().init(this);
+        //初始化stetho
+        initStetho();
 
+    }
+
+    private void initStetho(){
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build()
+        );
     }
 }
