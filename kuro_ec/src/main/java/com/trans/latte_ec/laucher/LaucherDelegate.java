@@ -47,21 +47,21 @@ public class LaucherDelegate extends KuroDelegate implements ITimerListener {
         }
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof ILauncherListener){
-//            mILauncherListener= (ILauncherListener) context;
-//        }
-//    }
-
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof ILauncherListener) {
-            mILauncherListener = (ILauncherListener) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ILauncherListener){
+            mILauncherListener= (ILauncherListener) context;
         }
     }
+
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        if (activity instanceof ILauncherListener) {
+//            mILauncherListener = (ILauncherListener) activity;
+//        }
+//    }
 
     private void initTimer() {
         mTimer = new Timer();

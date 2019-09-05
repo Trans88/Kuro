@@ -3,6 +3,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 
 import com.trans.kuro_core.activities.ProxyActivity;
+import com.trans.kuro_core.app.Kuro;
 import com.trans.kuro_core.delegates.KuroDelegate;
 import com.trans.kuro_core.ui.launcher.ILauncherListener;
 import com.trans.kuro_core.ui.launcher.OnLauncherFinishTag;
@@ -22,6 +23,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
         if (actionBar!=null){
             actionBar.hide();
         }
+        Kuro.getConfiguretor().withActivity(this);
     }
 
     @Override

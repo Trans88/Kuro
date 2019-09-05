@@ -1,5 +1,7 @@
 package com.trans.kuro_core.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -19,7 +21,7 @@ public class Configurator {
     private static final ArrayList<Interceptor>INTERCEPTORS=new ArrayList<>();
 
     private Configurator(){
-        KURO_CONFIGS.put(ConfigKeys.CONFIG_READY.name(),false);
+        KURO_CONFIGS.put(ConfigKeys.CONFIG_READY,false);
     }
 
 
@@ -38,10 +40,10 @@ public class Configurator {
     }
     public final void configure(){
         initIcons();
-        KURO_CONFIGS.put(ConfigKeys.CONFIG_READY.name(),true);
+        KURO_CONFIGS.put(ConfigKeys.CONFIG_READY,true);
     }
     public final Configurator withApiHost(String host){
-        KURO_CONFIGS.put(ConfigKeys.API_HOST.name(),host);
+        KURO_CONFIGS.put(ConfigKeys.API_HOST,host);
         return this;
     }
 
@@ -63,6 +65,20 @@ public class Configurator {
         KURO_CONFIGS.put(ConfigKeys.INTERCEPTOR,INTERCEPTORS);
         return this;
     }
+    public final Configurator withWeChatAppId(String appId){
+        KURO_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID,appId);
+        return this;
+    }
+
+    public final Configurator withWeChatAppSecret(String secret){
+        KURO_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET,secret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity){
+        KURO_CONFIGS.put(ConfigKeys.ACTIVITY,activity);
+        return this;
+    }
     private void initIcons(){
         if (ICONS.size()>0){
             final Iconify.IconifyInitializer initializer=Iconify.with(ICONS.get(0));
@@ -72,7 +88,7 @@ public class Configurator {
         }
     }
     private void checkConfiguration(){
-        final boolean isReady= (boolean) KURO_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
+        final boolean isReady= (boolean) KURO_CONFIGS.get(ConfigKeys.CONFIG_READY);
         if(!isReady){
             throw new RuntimeException("configuration is not ready,call configure");
         }
@@ -80,8 +96,12 @@ public class Configurator {
 
     @SuppressWarnings("unchecked")
     //告诉编译器这个类型是没有检测过得，但是并不抛出警告
-    final <T> T getConfiguration(Enum<ConfigKeys> key){
+    final <T> T getConfiguration(Object key){
         checkConfiguration();
-        return (T) KURO_CONFIGS.get(key.name());
+        final Object value =KURO_CONFIGS.get(key);
+        if (value ==null){
+            throw new NullPointerException(key.toString()+"is NULL");
+        }
+        return (T) KURO_CONFIGS.get(key);
     }
 }

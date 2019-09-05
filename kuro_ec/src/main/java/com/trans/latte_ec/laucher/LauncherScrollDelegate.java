@@ -1,6 +1,7 @@
 package com.trans.latte_ec.laucher;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -50,12 +51,20 @@ public class LauncherScrollDelegate extends KuroDelegate implements OnItemClickL
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof ILauncherListener) {
-            mILauncherListener = (ILauncherListener) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ILauncherListener) {
+            mILauncherListener = (ILauncherListener) context;
         }
     }
+
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        if (activity instanceof ILauncherListener) {
+//            mILauncherListener = (ILauncherListener) activity;
+//        }
+//    }
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {

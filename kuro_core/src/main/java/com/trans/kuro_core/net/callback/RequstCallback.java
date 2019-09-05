@@ -57,7 +57,7 @@ public class RequstCallback implements Callback<String> {
     }
 
     private void stopLoading(){
-        final long delayed= (long) Kuro.getConfigurations().get(ConfigKeys.LOADER_DELAYED);
+        final long delayed=Kuro.getConfiguration(ConfigKeys.LOADER_DELAYED);
         if (LOADER_STYLE!=null){
             HANDLER.postDelayed(new Runnable() {
                 @Override

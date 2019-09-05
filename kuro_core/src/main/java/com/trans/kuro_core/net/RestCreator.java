@@ -1,7 +1,6 @@
 package com.trans.kuro_core.net;
 
 import com.trans.kuro_core.app.ConfigKeys;
-import com.trans.kuro_core.app.Configurator;
 import com.trans.kuro_core.app.Kuro;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class RestCreator {
     }
 
     private static final class RetrofitHolder{
-        private static final String BASE_URL= (String) Kuro.getConfigurations().get(ConfigKeys.API_HOST.name());
+        private static final String BASE_URL= Kuro.getConfiguration(ConfigKeys.API_HOST);
         private static final Retrofit RETR0FIT_CLIENT =new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
@@ -41,8 +40,7 @@ public class RestCreator {
 
         private static final OkHttpClient.Builder BUILDER=new OkHttpClient.Builder();
 
-        private static final ArrayList<Interceptor> INTERCEPTORS =
-                (ArrayList<Interceptor>) Kuro.getConfigurations().get(ConfigKeys.INTERCEPTOR);
+        private static final ArrayList<Interceptor> INTERCEPTORS =Kuro.getConfiguration(ConfigKeys.INTERCEPTOR);
 
         private static OkHttpClient.Builder addInterceptor(){
             if (INTERCEPTORS!=null&&!INTERCEPTORS.isEmpty()){

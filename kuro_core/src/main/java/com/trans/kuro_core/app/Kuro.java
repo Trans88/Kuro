@@ -1,18 +1,24 @@
 package com.trans.kuro_core.app;
 
+import android.app.Application;
 import android.content.Context;
-import java.util.HashMap;
 
 public final class Kuro {
     public static Configurator init(Context context){
-        getConfigurations().put(ConfigKeys.APPLICATION_CONTEXT.name(),context.getApplicationContext());
+        Configurator.getInstance()
+                .getKuroConfigs()
+                .put(ConfigKeys.APPLICATION_CONTEXT, context.getApplicationContext());
         return Configurator.getInstance();
     }
-    public static HashMap<Object ,Object> getConfigurations(){
-        return Configurator.getInstance().getKuroConfigs();
+
+    public static Configurator getConfiguretor(){
+        return Configurator.getInstance();
+    }
+    public static <T> T getConfiguration(Object key){
+        return getConfiguretor().getConfiguration(key);
     }
 
-    public static Context getApplicationContext(){
-        return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT.name());
+    public static Application getApplicationContext(){
+            return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
 }

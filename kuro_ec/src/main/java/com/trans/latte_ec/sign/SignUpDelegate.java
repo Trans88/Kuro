@@ -1,6 +1,7 @@
 package com.trans.latte_ec.sign;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -65,12 +66,20 @@ public class SignUpDelegate extends KuroDelegate {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof ISignListener){
-            mISignListener = (ISignListener) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ISignListener){
+            mISignListener = (ISignListener) context;
         }
     }
+
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        if (activity instanceof ISignListener){
+//            mISignListener = (ISignListener) activity;
+//        }
+//    }
 
     private boolean checkForm(){
 

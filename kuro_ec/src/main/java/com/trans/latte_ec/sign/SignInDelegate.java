@@ -1,6 +1,7 @@
 package com.trans.latte_ec.sign;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -11,8 +12,11 @@ import android.widget.Toast;
 import com.trans.kuro_core.delegates.KuroDelegate;
 import com.trans.kuro_core.net.RestClient;
 import com.trans.kuro_core.net.callback.ISuccess;
+import com.trans.kuro_core.ui.launcher.ILauncherListener;
 import com.trans.kuro_core.util.Toast.ToastUtil;
 import com.trans.kuro_core.util.log.KuroLogger;
+import com.trans.kuro_core.wechat.KuroWechet;
+import com.trans.kuro_core.wechat.callback.IWeChetSignInCallBack;
 import com.trans.latte_ec.R;
 import com.trans.latte_ec.R2;
 
@@ -57,16 +61,31 @@ public class SignInDelegate extends KuroDelegate {
             start(new SignUpDelegate(),SINGLETASK);
         }else if (i==R.id.icon_sign_in_wechat){
             ToastUtil.shortShow("微信登录");
+            KuroWechet.getInstance()
+                    .onSignSuccess(new IWeChetSignInCallBack() {
+                        @Override
+                        public void onSignInSuccess(String userInfo) {
+                            ToastUtil.shortShow("微信登录成功");
+                        }
+                    })
+                    .signIn();
+        }
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ISignListener){
+            mISignListener = (ISignListener) context;
         }
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof ISignListener){
-            mISignListener = (ISignListener) activity;
-        }
-    }
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        if (activity instanceof ISignListener){
+//            mISignListener = (ISignListener) activity;
+//        }
+//    }
 
     private boolean checkForm(){
 

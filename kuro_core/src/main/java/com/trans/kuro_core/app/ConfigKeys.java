@@ -11,5 +11,8 @@ public enum ConfigKeys {
     CONFIG_READY,   //控制初始化或者配置是否完成
     ICON,      //存储自己的初始化项目
     LOADER_DELAYED,
-    INTERCEPTOR //OkHttp拦截器
+    INTERCEPTOR ,//OkHttp拦截器
+    WE_CHAT_APP_ID,
+    WE_CHAT_APP_SECRET,
+    ACTIVITY
 }
