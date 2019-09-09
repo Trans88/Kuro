@@ -10,6 +10,7 @@ import com.trans.kuro_core.ui.launcher.OnLauncherFinishTag;
 import com.trans.kuro_core.util.Toast.ToastUtil;
 import com.trans.latte_ec.laucher.LaucherDelegate;
 import com.trans.latte_ec.laucher.LauncherScrollDelegate;
+import com.trans.latte_ec.main.EcBottomDelegate;
 import com.trans.latte_ec.sign.ISignListener;
 import com.trans.latte_ec.sign.SignInDelegate;
 import com.trans.latte_ec.sign.SignUpDelegate;
@@ -51,7 +52,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
         switch (tag){
             case SIGNED:
                 ToastUtil.shortShow("启动结束，用户登录了");
-                getSupportDelegate().startWithPop(new ExampleDelegate());
+                getSupportDelegate().startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 ToastUtil.shortShow("启动结束，用户没登录");
