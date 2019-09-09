@@ -3,8 +3,8 @@ package com.trans.latte_ec.icon;
 import com.joanzapata.iconify.Icon;
 
 public enum  EcIcons implements Icon {
-    icon_like('\ue669'),
-    icon_notification('\ue66b');
+    icon_scan('\ue602'),
+    icon_ali_pay('\ue606');
     private char character;
 
     EcIcons(char character) {
