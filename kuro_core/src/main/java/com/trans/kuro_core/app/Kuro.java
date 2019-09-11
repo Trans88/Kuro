@@ -2,6 +2,8 @@ package com.trans.kuro_core.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
+
 
 public final class Kuro {
     public static Configurator init(Context context){
@@ -16,6 +18,10 @@ public final class Kuro {
     }
     public static <T> T getConfiguration(Object key){
         return getConfiguretor().getConfiguration(key);
+    }
+
+    public static Handler getHandler(){
+        return getConfiguration(ConfigKeys.HANDLER);
     }
 
     public static Application getApplicationContext(){

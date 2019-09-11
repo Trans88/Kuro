@@ -14,5 +14,6 @@ public enum ConfigKeys {
     INTERCEPTOR ,//OkHttp拦截器
     WE_CHAT_APP_ID,
     WE_CHAT_APP_SECRET,
-    ACTIVITY
+    ACTIVITY,
+    HANDLER
 }

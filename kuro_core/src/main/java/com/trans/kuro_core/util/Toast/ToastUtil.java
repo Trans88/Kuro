@@ -11,6 +11,6 @@ public class ToastUtil {
     }
 
     public static void longShow(String Content){
-        Toast.makeText(Kuro.getApplicationContext(),Content,Toast.LENGTH_SHORT).show();
+        Toast.makeText(Kuro.getApplicationContext(),Content,Toast.LENGTH_LONG).show();
     }
 }

@@ -19,9 +19,11 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_index"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="55dp"
         android:background="#ffff8800"
+
         >
+
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"

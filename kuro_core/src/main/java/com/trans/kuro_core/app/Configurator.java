@@ -1,6 +1,7 @@
 package com.trans.kuro_core.app;
 
 import android.app.Activity;
+import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
@@ -20,8 +21,11 @@ public class Configurator {
     //拦截器
     private static final ArrayList<Interceptor>INTERCEPTORS=new ArrayList<>();
 
+    private static final Handler HANDLER = new Handler();
+
     private Configurator(){
         KURO_CONFIGS.put(ConfigKeys.CONFIG_READY,false);
+        KURO_CONFIGS.put(ConfigKeys.HANDLER,HANDLER);
     }
 
 

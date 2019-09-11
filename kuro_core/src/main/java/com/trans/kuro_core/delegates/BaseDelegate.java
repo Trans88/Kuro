@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
 import com.trans.kuro_core.activities.ProxyActivity;
 
@@ -30,11 +31,15 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
 
     private  final SupportFragmentDelegate DELEGATE =new SupportFragmentDelegate(this);
 
+    private View mRootView=null;
+
+    public abstract Object setLayout();
+
     private Unbinder mUnbinder=null;//butterKnight类型
 
     protected FragmentActivity _mActivity;
 
-    public abstract Object setLayout();
+
 
     public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
 
@@ -49,7 +54,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         }else {
             throw new ClassCastException("setLayout() type must be int or View");
         }
-
+        mRootView=rootView;
         mUnbinder=ButterKnife.bind(this,rootView);
 
         onBindView(savedInstanceState,rootView);
@@ -61,13 +66,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         return (ProxyActivity) _mActivity;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (mUnbinder!=null){
-            mUnbinder.unbind();
-        }
-    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -81,6 +80,61 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         super.onCreate(savedInstanceState);
         DELEGATE.onCreate(savedInstanceState);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DELEGATE.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        DELEGATE.onPause();
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        DELEGATE.onDestroyView();
+        if (mUnbinder!=null){
+            mUnbinder.unbind();
+        }
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        DELEGATE.onDestroy();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        DELEGATE.onHiddenChanged(hidden);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        DELEGATE.setUserVisibleHint(isVisibleToUser);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        DELEGATE.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        DELEGATE.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return DELEGATE.onCreateAnimation(transit, enter, nextAnim);
+    }
+
 
     @Override
     public SupportFragmentDelegate getSupportDelegate() {
